@@ -8,15 +8,18 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use App\Entity\User;
 use App\Form\EnqueteurType;
+use App\Form\EnqueteurUpdateType;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
-
+/**
+ * @Route("/enqueteur")
+ */
 class EnqueteurController extends AbstractController
 {
     
 
 
     /**
-     * @Route("/inscriptionEnqueteur",name="addEnqueteur")
+     * @Route("/inscription",name="addEnqueteur")
      */
     public function addEnqueteur(UserPasswordEncoderInterface $encoder,Request $req){
 
@@ -66,15 +69,17 @@ class EnqueteurController extends AbstractController
     /**
  * @Route("update/enqueteur",name="updateEnqueteur")
  */
-public function updateEnqueteur(Request $req){
+public function updateEnqueteur(Request $req,UserPasswordEncoderInterface $encoder){
     $enqueteur=$this->getUser();
-    $form = $this->createForm(EnqueteurType::class, $enqueteur);
+    $form = $this->createForm(EnqueteurUpdateType::class, $enqueteur);
         $form->handleRequest($req);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $encoded = $encoder->encodePassword($enqueteur, $enqueteur->getPassword());
+            $enqueteur->setPassword($encoded);
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('updateEnqueteur');
+            return $this->redirectToRoute('accueilEnqueteur');
         }
         
 

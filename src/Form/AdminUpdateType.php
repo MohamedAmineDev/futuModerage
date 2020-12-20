@@ -10,14 +10,14 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 
-class AdminType extends AbstractType
+class AdminUpdateType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('email',EmailType::class)
-            ->add('password',PasswordType::class)
-            ->add('submit',SubmitType::class)
+        ->add('email',EmailType::class)
+        ->add('password')
+        ->add('submit',SubmitType::class)
         ;
     }
 

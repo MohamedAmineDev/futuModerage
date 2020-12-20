@@ -99,20 +99,25 @@ class UserAuthenticator extends AbstractFormLoginAuthenticator implements Passwo
        $user = $token->getUser();
         $i=0;
         $tab=$user->getRoles();
-        while($i<\count($tab)){
-            if($tab[$i]=="Enqueteur"){
+        $ch=$tab[0];
+        //while($i<\count($tab)){
+            if($ch=="Enqueteur"){
                 return new RedirectResponse($this->urlGenerator->generate("accueilEnqueteur"));
             }
-            else if($tab[$i]=="Sonde"){
+            else if($ch=="Sonde"){
                 return new RedirectResponse($this->urlGenerator->generate("accueilsonde"));
             }
-            else if($tab[$i]=="Admin"){
-                return new RedirectResponse($this->urlGenerator->generate("a"));
+            else if($ch=="Admin"){
+                return new RedirectResponse($this->urlGenerator->generate("accueilAdmin"));
+            }
+            else if($ch=="Consultant"){
+                return new RedirectResponse($this->urlGenerator->generate("accueilConsultant"));
             }
             else{
-                return new RedirectResponse($this->urlGenerator->generate("c"));
+
             }
-        }
+            
+        //}
 
         // For example : return new RedirectResponse($this->urlGenerator->generate('some_route'));
        // throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);

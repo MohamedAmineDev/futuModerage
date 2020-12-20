@@ -12,8 +12,7 @@
         <br>
         <div style="margin-left: 100px;margin-right: 160px ;" >
        {{form_start(form)}}
-        <p style="color: #0A1538;">{{form_label(form.image)}}</p>
-        <p style="margin-left: 290px;margin-top: -20px;">{{form_widget(form.image)}}</p>
+        
 
         <p style="color: #0A1538;">{{form_label(form.nom)}}</p>
         <p style="margin-left: 290px;margin-top: -20px;">{{form_widget(form.nom)}}</p>
@@ -34,9 +33,19 @@
         <p style="margin-left: 290px;margin-top: -20px;">{{form_widget(form.cin)}}</p>
 
         <p style="color: #0A1538;">{{form_label(form.tel)}}</p>
+        <p style="margin-left: 290px;margin-top: -20px;">{{form_widget(form.tel)}}</p>
+
+        <p style="color: #0A1538;">{{form_label(form.age)}}</p>
+        <p style="margin-left: 290px;margin-top: -20px;">{{form_widget(form.age)}}</p>
+
+        <p style="color: #0A1538;">{{form_label(form.dateNaissance)}}</p>
+        <p style="margin-left: 290px;margin-top: -20px;">{{form_widget(form.dateNaissance)}}</p>
+
+
+        <p style="color: #0A1538;">{{form_label(form.genre)}}</p>
+        <p style="margin-left: 290px;margin-top: -20px;">{{form_widget(form.genre)}}</p>
         <br><br><br>
-         <p style="margin-left: 290px;">{{form_widget(form.save_sonde,{ 'attr': {'class': 'btn btn-primary'} })}}</p>
-          <button class="btn btn-primary" style="margin-left: 50px;margin-top: -43px;"><a href="{{path('addEnqueteur')}}">en tant que enqueteur</a></button>
+         <p style="margin-left: 290px;">{{form_widget(form.submit,{ 'attr': {'class': 'btn btn-primary'},'label':'submit' })}}</p>
            {{form_end(form)}}
 
       

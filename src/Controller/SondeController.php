@@ -8,6 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use App\Entity\User;
 use App\Form\UserType;
+use App\Form\UserUpdateType;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class SondeController extends AbstractController
@@ -47,7 +48,7 @@ class SondeController extends AbstractController
     
 
     /**
-     * @Route("/accueilSonde", name="accueilsonde")
+     * @Route("/accueilsonde", name="accueilsonde")
      */
     public function accueilSonde(): Response
     {
@@ -69,7 +70,7 @@ class SondeController extends AbstractController
  */
 public function updateUtilisateur(Request $req,UserPasswordEncoderInterface $encoder){
     $user=$this->getUser();
-    $form = $this->createForm(UserType::class, $user);
+    $form = $this->createForm(UserUpdateType::class, $user);
         $form->handleRequest($req);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -78,6 +79,7 @@ public function updateUtilisateur(Request $req,UserPasswordEncoderInterface $enc
             $this->getDoctrine()->getManager()->flush();
 
             //return $this->redirectToRoute('sondage_index');
+            return $this->redirectToRoute('accueilsonde');
         }
         
 
@@ -86,6 +88,10 @@ public function updateUtilisateur(Request $req,UserPasswordEncoderInterface $enc
             'form' => $form->createView(),
         ]);
     }
+
+
+
+    
 
 
 }
