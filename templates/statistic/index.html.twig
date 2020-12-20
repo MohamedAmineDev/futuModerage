@@ -17,4 +17,8 @@
         <li>Your template at <code><a href="{{ 'D:/Mes Fichiers/Projet/Application Web/Futu/templates/statistic/index.html.twig'|file_link(0) }}">templates/statistic/index.html.twig</a></code></li>
     </ul>
 </div>
+<form method="post" action="{{path('calcule',{'id':2})}}">
+<input type="submit" onclick="display()"value="voir le diagramme graphique"/>
+<div id="piechart" style="width: 900px; height: 500px;display:none"></div>
+</from>
 {% endblock %}

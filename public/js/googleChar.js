@@ -1,22 +1,32 @@
 google.charts.load('current', {'packages':['corechart']});
       google.charts.setOnLoadCallback(drawChart);
 
-      function drawChart() {
+      function drawChart(table,id) {
 
-        var data = google.visualization.arrayToDataTable([
-          ['Task', 'Hours per Day'],
-          ['Work',     11],
-          ['Eat',      2],
-          ['Commute',  2],
-          ['Watch TV', 2],
-          ['Sleep',    7]
-        ]);
+        var data = google.visualization.arrayToDataTable(table);
 
         var options = {
-          title: 'My Daily Activities'
+          title: 'Les statistiques du sondage numéro :  '+id
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('piechart'));
 
         chart.draw(data, options);
+        
       }
+
+      function display(){
+        var div=document.getElementById('piechart');
+        div.style.display=true;
+        
+      }
+
+      $.ajax({
+        method:'GET',
+        url: $link.attr(href),
+        dataType:'json',
+        data:{},
+        success:function(res){
+          drawChart(res[0],res[1]);
+        }
+      });
