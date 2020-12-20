@@ -1,0 +1,8 @@
+{% extends "base.html.twig" %}
+{% block body %}
+{{ form_start(form) }}
+<p style="color: #0A1538;">{{form_label(form.titre)}}</p>
+        <p style="margin-left: 290px;margin-top: -20px;">{{form_widget(form.titre)}}</p>
+{{ form_end(form) }}
+
+{% endblock %}

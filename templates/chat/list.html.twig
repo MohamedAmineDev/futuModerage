@@ -1,0 +1,25 @@
+{% extends "base.html.twig" %}
+{% block body %}
+{% for message in chat %}
+    {% if message.user == app.user %}
+    <div>
+    <p style="border:1px,solid,black;background-color:skyblue;color:grey;float:right">
+    {{message.user.nom}} à dit :<br/>
+    {{message.text}}.
+    </p>
+    </div>
+    <br/>
+    {% else %}
+       <div>
+        <p style="border:1px,solid,black;background-color:skyblue;color:grey;float:left">
+        {{message.user.nom}} à dit :<br/>
+    {{message.text}}.
+        </p>
+       </div>
+       <br/>
+    {% endif %}
+{% endfor %}
+{{ form_start(form) }}
+{{form_widget(form.text,{'attr':{'placholder':'taper votre message ici !'}})}}
+{{ form_end(form) }}
+{% endblock %}
